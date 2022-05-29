@@ -17,6 +17,8 @@ app.use(
 );
 const userController = require("./controllers/users.js");
 app.use("/User", userController);
+const eventController = require('./controllers/events.js');
+app.use('/Events', eventController);
 
 //DATABASE CONNECTION
 mongoose.connect(process.env.DATABASE_URL, {

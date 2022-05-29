@@ -12,6 +12,7 @@ router.get("/Login", (req, res) => {
 
 //CALENDAR INDEX
 router.get('/Calendar', (req,res) => {
+   console.log('user schema', User);
   if(req.session.currentUser){
     res.render('user/calendar.ejs');
   }
@@ -50,6 +51,14 @@ router.post('/Login', (req,res) => {
 router.post('/', (req,res) => {
   User.create(req.body, (error, createdUser) => {
       res.redirect('/');
+  });
+});
+
+// CREATES EVENT
+router.post('/Calendar', (req,res) => {
+  req.session.currentUser.event.push(req.body);
+  req.session.save((error) => {
+    res.redirect('/User/Caledar');
   });
 });
 module.exports = router;
