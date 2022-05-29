@@ -18,7 +18,7 @@ app.use(
 const userController = require("./controllers/users.js");
 app.use("/User", userController);
 const eventController = require('./controllers/events.js');
-app.use('/Events', eventController);
+app.use('/', eventController);
 
 //DATABASE CONNECTION
 mongoose.connect(process.env.DATABASE_URL, {
@@ -33,6 +33,15 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 //HOME ROUTE
 app.get("/", (req, res) => {
     res.render('home.ejs');
+});
+
+
+
+//LOGIN PAGE
+app.get("/Login", (req, res) => {
+    res.render("user/login.ejs", {
+        currentUser: req.session.currentUser,
+    });
 });
 
 //PORT CONNECTION

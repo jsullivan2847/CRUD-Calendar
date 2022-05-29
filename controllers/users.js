@@ -2,19 +2,15 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
+router.use(express.urlencoded({ extended: true }));
 
-//LOGIN PAGE
-router.get("/Login", (req, res) => {
-    res.render("user/login.ejs", {
-        currentUser: req.session.currentUser,
-    });
-});
 
 //CALENDAR INDEX
 router.get('/Calendar', (req,res) => {
-   console.log('user schema', User);
   if(req.session.currentUser){
-    res.render('user/calendar.ejs');
+    res.render('user/calendar.ejs', {
+      user: req.session.currentUser,
+    });
   }
   else{
     res.send('you need to login to see this page');
@@ -54,11 +50,4 @@ router.post('/', (req,res) => {
   });
 });
 
-// CREATES EVENT
-router.post('/Calendar', (req,res) => {
-  req.session.currentUser.event.push(req.body);
-  req.session.save((error) => {
-    res.redirect('/User/Caledar');
-  });
-});
 module.exports = router;
