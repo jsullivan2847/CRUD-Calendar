@@ -15,9 +15,9 @@
                     <a href="">Monday</a><br>
                     <a href="/user/NewEvent">Create An Event</a>
                     <ul>
-                        <% user.event.forEach((event) => { %>
+                        <% events.forEach((event) => { %>
                             <li>
-                                <a href=""><%=event.title%></a>
+                                <a href="/User/Event/<%=event._id%>"><%=event.title%></a>
                             </li>
                        <% }) %>
                     </ul>

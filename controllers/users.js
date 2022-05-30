@@ -10,6 +10,7 @@ router.get('/Calendar', (req,res) => {
   if(req.session.currentUser){
     res.render('user/calendar.ejs', {
       user: req.session.currentUser,
+      events: req.session.currentUser.event,
     });
   }
   else{
@@ -24,12 +25,13 @@ router.get('/NewEvent', (req,res) => {
   }
 });
 
+//DELETE
+
 //UPDATE??? SENDS LOGIN REQUEST
 router.post('/Login', (req,res) => {
   User.findOne({email: req.body.email}, (error, foundUser) => {
     if(!foundUser) {
       res.send('sorry no user with that email');
-      //console.log(foundUser);
     }
     else {
       if(req.body.password === foundUser.password){
@@ -47,6 +49,31 @@ router.post('/Login', (req,res) => {
 router.post('/', (req,res) => {
   User.create(req.body, (error, createdUser) => {
       res.redirect('/');
+  });
+});
+
+
+router.post('User/Calendar', (req,res) => {
+  User.findById(req.session.currentUser._id, (error, user) => {
+    user.event.push(req.body);
+    user.save((error) => {
+      res.redirect('User/Calendar')
+    });
+  });
+});
+
+
+//EDIT
+
+//SHOW PAGES
+
+router.get('/Event/:id', (req,res) => {
+  User.findById(req.session.currentUser._id, (error,user) => {
+    const foundEvent = user.event.id(req.params.id)
+    res.render('user/showEvent.ejs', {
+      event: foundEvent,
+    })
+    // console.log(foundEvent);
   });
 });
 

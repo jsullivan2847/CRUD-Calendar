@@ -9,6 +9,8 @@ const eventSchema = new Schema({
     completed: {type: Boolean, default: false},
 });
 
+
+
 //USER
 const userSchema = new Schema({
     email: {type: String, unique: true, required: true},
