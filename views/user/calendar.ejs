@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <%- include('../partials/head.ejs') -%>
+    <%- include('../partials/head.ejs') -%>
   </head>
   <body>
     <h1></h1>
@@ -11,73 +11,51 @@
           <div class="weekday">
             <a href="">Mon</a><br />
             <a href="/User/NewEvent">+</a>
-            <%- include('../partials/eventList.ejs')-%>
           </div>
           <div class="weekday">
             <a href="">Tue</a><br />
             <a href="/User/NewEvent">+</a>
-            <%- include('../partials/eventList.ejs')-%>
           </div>
           <div class="weekday">
             <a href="">Wed</a><br />
             <a href="/User/NewEvent">+</a>
-            <%- include('../partials/eventList.ejs')-%>
           </div>
           <div class="weekday">
             <a href="">Thuy</a><br />
             <a href="/User/NewEvent">+</a>
-            <%- include('../partials/eventList.ejs')-%>
           </div>
           <div class="weekday">
             <a href="">Fri</a><br />
             <a href="/User/NewEvent">+</a>
-            <%- include('../partials/eventList.ejs')-%>
           </div>
           <div class="weekday">
             <a href="">Sat</a><br />
             <a href="/User/NewEvent">+</a>
-            <%- include('../partials/eventList.ejs')-%>
           </div>
           <div class="weekday">
             <a href="">Sunday</a><br />
             <a href="/User/NewEvent">+</a>
-            <%- include('../partials/eventList.ejs')-%>
           </div>
         </div>
-          <div class="days">
-            <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-          <div>6</div>
-          <div>7</div>
-          <div>8</div>
-          <div>9</div>
-          <div>10</div>
-          <div>11</div>
-          <div>12</div>
-          <div>13</div>
-          <div>14</div>
-          <div>15</div>
-          <div>16</div>
-          <div>17</div>
-          <div>18</div>
-          <div>19</div>
-          <div>20</div>
-          <div>21</div>
-          <div>22</div>
-          <div>23</div>
-          <div>24</div>
-          <div>25</div>
-          <div>26</div>
-          <div>27</div>
-          <div>28</div>
-          <div>29</div>
-          <div>30</div>
-          <div>31</div>
-          </div>
+        <div class="days">
+          <% days.forEach((day) => { %>
+            <div> <a href="/User/Day/<%=day%>"><%=day%></a>
+           <a href="/User/NewEvent">+</a>
+           <ul>
+            <% events.forEach((event) => { %>
+              <%if(event.day === day) {%>
+            <li>
+              <a href="/User/Event/<%=event._id%>"><%=event.title%></a><br />
+              <form action="/User/Event/<%=event._id%>?_method=DELETE" method="POST">
+                <input type="submit" value="X" />
+              </form>
+            </li>
+            <% }}) %>
+          </ul>
+         </div>
+        <% })%>
         </div>
       </div>
+    </div>
   </body>
 </html>

@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
+const Calendar = require('../models/Calendar');
 router.use(express.urlencoded({ extended: true }));
 
 
@@ -12,6 +13,7 @@ router.get('/Calendar', (req,res) => {
       res.render('user/calendar.ejs', {
         user: foundUser,
         events: foundUser.event,
+        days: Calendar.month.day,
       })
     });
   }
@@ -95,5 +97,11 @@ router.get('/Event/:id', (req,res) => {
     })
   });
 });
+
+router.get('/Day/:index', (req,res) => {
+  res.render('user/showDay.ejs', {
+    day: Calendar.month.day[req.params.index],
+  })
+})
 
 module.exports = router;
