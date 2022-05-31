@@ -1,71 +1,50 @@
 body{
     background-color: pink;
+    display: flex;
+    justify-content: center;  
 }
-#calendar-container{
-    background-color: rgb(163, 214, 213);
-    display: Grid;
-    grid-template-columns: 6fr,1fr,1fr,1fr,1fr,1fr,1fr,;
-    grid-template-rows: 1fr,1fr,1fr,1fr,1fr;
-    height: 500px;
-    width: 300px;
-}
-
-.Mon{
-    grid-column: 1;
+#container{
+    height: 80vh;
+    width: 80%;
     border-style: solid;
-    border-width: 2px;
-    border-color:black;
-    padding: 5px;
-    font-size: 11px;
+    border-width: 0.5px;
+    border-color: rgb(156, 149, 149);
 }
-.Tue{
-    grid-column: 2;
+#calendar{
+    width: 35rem;
+    height: 80em;
+    background-color: beige;
     border-style: solid;
-    border-width: 2px;
-    border-color:black;
-    padding: 5px;
-    font-size: 11px;
+    border-width: 0.5px;
+    border-color: rgb(156, 149, 149);
+    
 }
-.Wed{
-    grid-column: 3;
+.weekdays{
+    width: 100%;
+    height: 5rem;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+}
+.weekdays div{
+    width: calc(35rem/7);
+    font-size: 8px;
+}
+.days{
+    width: 100%; 
+    height: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.days div{
+    padding: 0.3rem;
+    width: calc(35rem/7);
+    height: 5rem;
     border-style: solid;
-    border-width: 2px;
-    border-color:black;
-    padding: 5px;
-    font-size: 11px;
+    border-width: 0.5px;
+    border-color: rgb(156, 149, 149);
 }
-.Thu{
-    grid-column: 4;
-    border-style: solid;
-    border-width: 2px;
-    border-color:black;
-    padding: 5px;
-    font-size: 11px;
-}
-.Fri{
-    grid-column: 5;
-    border-style: solid;
-    border-width: 2px;
-    border-color:black;
-    padding: 5px;
-    font-size: 11px;
-}
-.Sat{
-    grid-column: 6;
-    border-style: solid;
-    border-width: 2px;
-    border-color:black;
-    padding: 5px;
-    font-size: 11px;
-}
-.Sun{
-    grid-column: 7;
-    border-style: solid;
-    border-width: 2px;
-    border-color:black;
-    padding: 5px;
-    font-size: 11px;
-}
-
 
 
