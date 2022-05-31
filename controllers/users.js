@@ -8,9 +8,11 @@ router.use(express.urlencoded({ extended: true }));
 //CALENDAR INDEX
 router.get('/Calendar', (req,res) => {
   if(req.session.currentUser){
-    res.render('user/calendar.ejs', {
-      user: req.session.currentUser,
-      events: req.session.currentUser.event,
+    User.findById(req.session.currentUser._id, (error, foundUser)=> {
+      res.render('user/calendar.ejs', {
+        user: foundUser,
+        events: foundUser.event,
+      })
     });
   }
   else{
@@ -26,6 +28,16 @@ router.get('/NewEvent', (req,res) => {
 });
 
 //DELETE
+
+//UPDATE EVENTS
+router.put('/Event/:id', (req,res) => {
+  User.findById(req.session.currentUser._id, (error,updatedUser) => {
+    updatedUser.event.id(req.params.id).title = req.body.title;
+    updatedUser.save((error,result)=> {
+      res.redirect('/User/Calendar');
+    })
+  })
+})
 
 //UPDATE??? SENDS LOGIN REQUEST
 router.post('/Login', (req,res) => {
@@ -52,12 +64,12 @@ router.post('/', (req,res) => {
   });
 });
 
-
+//CREATES EVENT
 router.post('User/Calendar', (req,res) => {
   User.findById(req.session.currentUser._id, (error, user) => {
     user.event.push(req.body);
-    user.save((error) => {
-      res.redirect('User/Calendar')
+    user.markModified('posts');
+    user.save((error, result) => {
     });
   });
 });
@@ -66,14 +78,12 @@ router.post('User/Calendar', (req,res) => {
 //EDIT
 
 //SHOW PAGES
-
 router.get('/Event/:id', (req,res) => {
   User.findById(req.session.currentUser._id, (error,user) => {
     const foundEvent = user.event.id(req.params.id)
     res.render('user/showEvent.ejs', {
       event: foundEvent,
     })
-    // console.log(foundEvent);
   });
 });
 
