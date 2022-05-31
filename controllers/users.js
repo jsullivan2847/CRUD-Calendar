@@ -29,9 +29,9 @@ router.get('/NewEvent', (req,res) => {
 
 //DELETE EVENT
 router.delete('/Event/:id', (req,res) => {
-  User.findById(req.session.currentUser._id, (error, foundUser) => {
-    foundUser.event.id(req.params.id).remove();
-    foundUser.save((error) => {
+  User.findById(req.session.currentUser._id, (error, theUser) => {
+    theUser.event.id(req.params.id).remove();
+    theUser.save((error) => {
       res.redirect('/User/Calendar');
     })
   })
@@ -39,13 +39,14 @@ router.delete('/Event/:id', (req,res) => {
 
 // UPDATE EVENTS
 router.put('/Event/:id', (req,res) => {
-  User.findById(req.session.currentUser._id, (error,updatedUser) => {
+  User.findById(req.session.currentUser._id,(error,updatedUser) => {
+    console.log(updatedUser);
     updatedUser.event.id(req.params.id).title = req.body.title;
     updatedUser.save((error,result)=> {
       res.redirect('/User/Calendar');
-    })
-  })
-})
+    });
+  });
+});
 
 //UPDATE??? SENDS LOGIN REQUEST
 router.post('/Login', (req,res) => {
@@ -73,11 +74,11 @@ router.post('/', (req,res) => {
 });
 
 //CREATES EVENT
-router.post('User/Calendar', (req,res) => {
+router.post('/Calendar', (req,res) => {
   User.findById(req.session.currentUser._id, (error, user) => {
     user.event.push(req.body);
-    user.markModified('posts');
     user.save((error, result) => {
+      res.redirect('/User/Calendar');
     });
   });
 });
@@ -85,7 +86,7 @@ router.post('User/Calendar', (req,res) => {
 
 //EDIT
 
-//SHOW PAGES
+// SHOW PAGES
 router.get('/Event/:id', (req,res) => {
   User.findById(req.session.currentUser._id, (error,user) => {
     const foundEvent = user.event.id(req.params.id)

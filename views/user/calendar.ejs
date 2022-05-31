@@ -4,31 +4,43 @@
       <%- include('../partials/head.ejs') -%>
   </head>
   <body>
-    <h1>Calendar Page</h1>
+    <h1><%=user.email%>'s Calendar</h1>
     <div id="calendar-container">
-      <ul>
-        <li>
-          <div id="Mon">
-            <a href="">Monday</a><br />
-            <a href="/User/NewEvent">Create An Event</a>
+          <div class="Mon"class="day">
+            <a href="">Mon</a><br />
+            <a href="/User/NewEvent">+</a>
             <%- include('../partials/eventList.ejs')-%>
           </div>
-          <br />
-        </li>
-        <li>
-          <div id="Tues">
-            <a href="">Tuesday</a><br />
-            <a href="/User/NewEvent">Create An Event</a>
+          <div class="Tue"class="day">
+            <a href="">Tue</a><br />
+            <a href="/User/NewEvent">+</a>
+            <%- include('../partials/eventList.ejs')-%>
           </div>
-          <br />
-        </li>
-        <li>
-          <div id="Wed">
-            <a href="">Wednesday</a><br />
-            <a href="/User/NewEvent">Create An Event</a>
+          <div class="Wed"class="day">
+            <a href="">Wed</a><br />
+            <a href="/User/NewEvent">+</a>
+            <%- include('../partials/eventList.ejs')-%>
           </div>
-        </li>
-      </ul>
+          <div class="Thu"class="day">
+            <a href="">Thuy</a><br />
+            <a href="/User/NewEvent">+</a>
+            <%- include('../partials/eventList.ejs')-%>
+          </div>
+          <div class="Fri"class="day">
+            <a href="">Fri</a><br />
+            <a href="/User/NewEvent">+</a>
+            <%- include('../partials/eventList.ejs')-%>
+          </div>
+          <div class="Sat"class="day">
+            <a href="">Sat</a><br />
+            <a href="/User/NewEvent">+</a>
+            <%- include('../partials/eventList.ejs')-%>
+          </div>
+          <div class="Sun"class="day">
+            <a href="">Sunday</a><br />
+            <a href="/User/NewEvent">+</a>
+            <%- include('../partials/eventList.ejs')-%>
+          </div>
     </div>
   </body>
 </html>
