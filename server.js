@@ -6,6 +6,7 @@ const app = express();
 const mongoose = require("mongoose");
 
 //MIDDLEWARE
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(
