@@ -27,9 +27,17 @@ router.get('/NewEvent', (req,res) => {
   }
 });
 
-//DELETE
+//DELETE EVENT
+router.delete('/Event/:id', (req,res) => {
+  User.findById(req.session.currentUser._id, (error, foundUser) => {
+    foundUser.event.id(req.params.id).remove();
+    foundUser.save((error) => {
+      res.redirect('/User/Calendar');
+    })
+  })
+})
 
-//UPDATE EVENTS
+// UPDATE EVENTS
 router.put('/Event/:id', (req,res) => {
   User.findById(req.session.currentUser._id, (error,updatedUser) => {
     updatedUser.event.id(req.params.id).title = req.body.title;
