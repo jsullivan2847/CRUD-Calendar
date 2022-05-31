@@ -7,7 +7,19 @@
     <title>Day</title>
 </head>
 <body>
-    <h1>day <%=day  -1%></h1>
-
+    <h1>day <%=day.date-1%></h1>
+    <ul>AM
+        <%day.am.forEach((hour) => { %>
+            <li>
+                <%=hour%>
+            </li>
+        <%})%>
+        PM
+        <%day.pm.forEach((hour) => { %>
+            <li>
+                <%=hour%>
+            </li>
+        <%})%>
+    </ul>
 </body>
 </html>
