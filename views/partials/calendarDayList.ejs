@@ -1,7 +1,7 @@
 <% days.forEach((day) => { %>
 <div>
   <a href="/User/Day/<%=day.date%>"><%=day.date%></a>
-  <a href="/User/NewEvent">+</a>
+  <a href="/User/NewEvent/Day/<%=day.date%>">+</a>
   <% events.forEach((event) => { %> <%if(event.day === day.date) {%>
     <a href="/User/Event/<%=event._id%>"><%=event.title%></a>
     <form action="/User/Event/<%=event._id%>?_method=DELETE" method="POST">

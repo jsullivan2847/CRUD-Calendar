@@ -4,43 +4,40 @@
     <%- include('../partials/head.ejs') -%>
   </head>
   <body>
-    <h1></h1>
-    <div id="container">
-      <div id="calendar">
+    <div class="calendar-page-layout">
+      <div class="sidebar">
+        <div class="options">
+          
+        </div>
+      </div>
+      <div class="calendar">
         <div class="weekdays">
-          <div class="weekday">
-            <a href="">Mon</a><br />
-            <a href="/User/NewEvent">+</a>
+          <div>
+            <p>Mon</p>
           </div>
-          <div class="weekday">
-            <a href="">Tue</a><br />
-            <a href="/User/NewEvent">+</a>
+          <div>
+            <p>Tue</p>
           </div>
-          <div class="weekday">
-            <a href="">Wed</a><br />
-            <a href="/User/NewEvent">+</a>
+          <div>
+            <p>Wed</p>
           </div>
-          <div class="weekday">
-            <a href="">Thuy</a><br />
-            <a href="/User/NewEvent">+</a>
+          <div>
+            <p>Thu</p>
           </div>
-          <div class="weekday">
-            <a href="">Fri</a><br />
-            <a href="/User/NewEvent">+</a>
+          <div>
+            <p>Fri</p>
           </div>
-          <div class="weekday">
-            <a href="">Sat</a><br />
-            <a href="/User/NewEvent">+</a>
+          <div>
+            <p>Sat</p>
           </div>
-          <div class="weekday">
-            <a href="">Sunday</a><br />
-            <a href="/User/NewEvent">+</a>
+          <div>
+            <p>Sun</p>
           </div>
         </div>
         <div class="days">
           <%-include('../partials/calendarDayList.ejs')-%>
         </div>
       </div>
-    </div>
+  </div>
   </body>
 </html>
