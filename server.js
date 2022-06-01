@@ -32,14 +32,14 @@ db.on("connected", () => console.log("mongo connected"));
 db.on("disconnected", () => console.log("mongo disconnected"));
 
 //HOME ROUTE
-app.get("/", (req, res) => {
+app.get("/SignUp", (req, res) => {
     res.render('home.ejs');
 });
 
 
 
 //LOGIN PAGE
-app.get("/Login", (req, res) => {
+app.get("/", (req, res) => {
     res.render("user/login.ejs", {
         currentUser: req.session.currentUser,
     });

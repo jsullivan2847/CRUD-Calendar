@@ -38,22 +38,7 @@
           </div>
         </div>
         <div class="days">
-          <% days.forEach((day) => { %>
-            <div> <a href="/User/Day/<%=day.date%>"><%=day.date%></a>
-           <a href="/User/NewEvent">+</a>
-           <ul>
-            <% events.forEach((event) => { %>
-              <%if(event.day === day.date) {%>
-            <li>
-              <a href="/User/Event/<%=event._id%>"><%=event.title%></a><br />
-              <form action="/User/Event/<%=event._id%>?_method=DELETE" method="POST">
-                <input type="submit" value="X" />
-              </form>
-            </li>
-            <% }}) %>
-          </ul>
-         </div>
-        <% })%>
+          <%-include('../partials/calendarDayList.ejs')-%>
         </div>
       </div>
     </div>

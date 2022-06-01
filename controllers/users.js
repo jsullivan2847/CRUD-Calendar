@@ -98,10 +98,15 @@ router.get('/Event/:id', (req,res) => {
   });
 });
 
+//SHOW DAY
 router.get('/Day/:index', (req,res) => {
-  res.render('user/showDay.ejs', {
-    day: Calendar.month.day[req.params.index],
-  })
-})
+  User.findById(req.session.currentUser._id, (error, foundUser) => {
+    res.render('user/showDay.ejs', {
+      day: Calendar.month.day[req.params.index],
+      events: foundUser.event,
+    })
+    console.log(foundUser.event);
+  });
+});
 
 module.exports = router;
