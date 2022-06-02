@@ -5,21 +5,27 @@
   </head>
   <body>
     <div class="show-day-page">
-      <h1 class="day-header">day <%=day.date-1%></h1>
+      <h1 class="day-header"><%=day.date%></h1>
 
       <div id="day-grid">
-        <%-include('../partials/dayHours.ejs')-%>
-          <% events.forEach((event) => { %>
-          <div class = "day-grid-events">
-            <a href="/User/Event/<%=event._id%>"><%=event.title%></a>
-            <form
-              action="/User/Event/<%=event._id%>?_method=DELETE"
-              method="POST"
-            >
-              <input class="btn btn-danger" type="submit" value="" />
-            </form>
-          </div>
-          <% }) %>
+        <%dayHours.am.forEach((hour) => { %>
+            <div class="hours">
+                <div>
+                <%=hour%>
+                <a id="new-event-button"href="/User/NewEvent/Day/<%=day.dayofMonth%>">+</a>
+                </div>
+                <% events.forEach((event) => { %> <%if(event.day === day.date) {%>
+                    <%if(event.hour === hour) {%>
+                        <div class="event-box day-events">
+                            <a href="/User/Event/<%=event._id%>"><%=event.title%></a>
+                            <form action="/User/Event/<%=event._id%>?_method=DELETE" method="POST">
+                              <input class="btn btn-danger" type="submit" value="" />
+                            </form>
+                        </div>
+                <%}%>
+                    <% }}) %>
+            </div>
+         <% })%>
       </div>
     </div>
   </body>

@@ -4,12 +4,9 @@
     <%- include('../partials/head.ejs') -%>
   </head>
   <body>
-    <div class="calendar-page-layout">
-      <div class="sidebar">
-        <div class="options">
-          
-        </div>
-      </div>
+    <div class="toolbar"></div>
+    <h1 id="date-header"><%=month%></h1>
+    <div id="calendar-page-layout">
       <div class="calendar">
         <div class="weekdays">
           <div>
@@ -30,14 +27,17 @@
           <div>
             <p>Sat</p>
           </div>
-          <div>
+          <div id="sunday">
             <p>Sun</p>
           </div>
         </div>
-        <div class="days">
-          <%-include('../partials/calendarDayList.ejs')-%>
-        </div>
+        <div class="placeholder-tile"></div>
+        <div class="placeholder-tile"></div>
+        <div class="placeholder-tile-2"></div>
+        <div class="placeholder-tile-2"></div>
+        <div class="placeholder-tile-2"></div>
+        <%-include('../partials/calendarDayList.ejs')-%>
       </div>
-  </div>
+    </div>
   </body>
 </html>

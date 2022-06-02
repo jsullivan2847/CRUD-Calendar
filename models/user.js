@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const dayjs = require('dayjs')
-dayjs().format()
+const dayjs = require('dayjs');
+const calendar = require('dayjs/plugin/calendar');
+dayjs.extend(calendar);
+dayjs().format();
 
+const today = dayjs().format('D');
 //EVENT
 const eventSchema = new Schema({
     title: {type: String, required: true},
     details: String,
-    day: Number,
-    // start: Date,
-    // end: Date,
+    day: String,
+    hour: {type: Number, default: 12},
     completed: {type: Boolean, default: false},
 });
 

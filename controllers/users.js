@@ -1,21 +1,49 @@
+//DEPENDENCIES
 const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 const Calendar = require('../models/Calendar');
 router.use(express.urlencoded({ extended: true }));
+
+
+//DAYJS API
 const dayjs = require('dayjs');
+const calendar = require('dayjs/plugin/calendar');
+const toObject = require('dayjs/plugin/toObject');
+const duration = require ('dayjs/plugin/duration');
+dayjs.extend(toObject, calendar,duration);
 dayjs().format();
 const now = dayjs();
 
-console.log(now);
 
-function Today() {
-  const today = new Date();
-  return date = today.getFullYear() + '-' + (today.getMonth() + 1) + "-" + today.getDate();
+
+//Used to populate calendar view with days
+function getDaysInMonth(date) {
+  let length = new Array(date.daysInMonth());
+  return length.fill('').map((day,index) =>{
+    return {
+      date: dayjs(`
+      ${date.format('YYYY')}-
+      ${date.format('M')}-
+      ${index + 1}`).format('YYYY-MM-DD'),
+      dayofMonth: index + 1,
+      object: dayjs(date).toDate(),
+    }
+  });
 };
 
-const today = Today();
+;
+
+const hours = Array(dayjs(now).toObject().hours).fill('').map((hour, index) => {
+  return hour = index + 1
+});
+
+// console.log(dayjs().month(7).date(8).format('dddd, MMMM D YYYY'))
+// console.log(dayjs().subtract(7, 'year').format('dddd, MMMM D YYYY'));
+
+
+
 
 
 //CALENDAR INDEX
@@ -25,7 +53,9 @@ router.get('/Calendar', (req,res) => {
       res.render('user/calendar.ejs', {
         user: foundUser,
         events: foundUser.event,
-        days: Calendar.month.day,
+        month: now.format('dddd, MMMM D YYYY'),
+        days: getDaysInMonth(now),
+        dayHours: Calendar.month.day,
       })
     });
   }
@@ -37,9 +67,9 @@ router.get('/Calendar', (req,res) => {
 //NEW EVENT
 router.get('/NewEvent/Day/:index', (req,res) => {
   if(req.session.currentUser){
+    console.log()
     res.render('user/new.ejs', {
-      day: Calendar.month.day[req.params.index],
-      today: today,
+      today: now.date(req.params.index).format('YYYY-MM-DD'),
     });
   }
 });
@@ -57,7 +87,6 @@ router.delete('/Event/:id', (req,res) => {
 // UPDATE EVENTS
 router.put('/Event/:id', (req,res) => {
   User.findById(req.session.currentUser._id,(error,updatedUser) => {
-    console.log(updatedUser);
     updatedUser.event.id(req.params.id).title = req.body.title;
     updatedUser.save((error,result)=> {
       res.redirect('/User/Calendar');
@@ -115,19 +144,24 @@ router.post('/Calendar', (req,res) => {
 router.get('/Event/:id', (req,res) => {
   User.findById(req.session.currentUser._id, (error,user) => {
     const foundEvent = user.event.id(req.params.id)
+    console.log('event',foundEvent);
     res.render('user/showEvent.ejs', {
       event: foundEvent,
-      day: Calendar.month.day[foundEvent.day],
+      day: foundEvent.day,
     })
   });
 });
 
+
 //SHOW DAY
 router.get('/Day/:index', (req,res) => {
   User.findById(req.session.currentUser._id, (error, foundUser) => {
+    console.log(foundUser.event[0].hour)
+    console.log(Calendar.month.day[req.params.index].am[0]);
     res.render('user/showDay.ejs', {
-      day: Calendar.month.day[req.params.index],
+      day: getDaysInMonth(now)[req.params.index],
       events: foundUser.event,
+      dayHours: Calendar.month.day[req.params.index],
     })
   });
 });

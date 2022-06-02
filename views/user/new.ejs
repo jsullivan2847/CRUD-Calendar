@@ -4,8 +4,8 @@
     <%- include('../partials/head.ejs') -%>
 </head>
 <body>
-    <section class="form-container">
     <div class="show-day-page">
+    <section class="form-container">
         <h1>New Event</h1>
     <main>
         
@@ -13,14 +13,14 @@
             <label for="title">Title</label>
             <input class="form-control"type="text" name="title" id="title"><br>
             <label for="day">Day</label>
-            <input class="form-control"type="number" name="day"id="day" value="<%=day.date -1%>"><br>
-            <label for="start">Start</label>
-            <input class="form-control"type="Date" name="start"id="start"value="<%=today%>">
+            <input class="form-control"type="Date" name="day"id="day"value="<%=today%>">
+            <label for="hour">Hour</label>
+            <input class="form-control"type="number" name="hour" id="hour"><br>
             <br>
             <input class="form-control"type="submit" value="Create Event">
         </form>
     </main>
-    </div>
     </section>
+</div>
 </body>
 </html>

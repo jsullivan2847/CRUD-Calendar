@@ -4,18 +4,19 @@
     <%- include('./partials/head.ejs') -%>
 </head>
 <body>
-    <section class="form-container">
-        <h1>Sign Up</h1>
-        <form action="/user" method="POST">
-            <label for="email">Email</label><br>
-            <input type="email" name="email" id="email" placeholder="abbcd@gmail.com"><br>
-            <label for="password">Password</label><br>
-            <input type="password"name="password"id="password"><br>
-            <br>
-            <input class="btn btn-primary" type="submit" value="Sign Up">
-            <a class = "btn btn-secondary"href="/">Log In</a><br>
-        </form>
-    </section>
-    
+    <div class="show-day-page">
+        <section class="form-container">
+            <h1>Sign Up</h1>
+            <form action="/user" method="POST">
+                <label for="email">Email</label><br>
+                <input type="email" name="email" id="email" placeholder="abbcd@gmail.com"><br>
+                <label for="password">Password</label><br>
+                <input type="password"name="password"id="password"><br>
+                <br>
+                <input class="btn btn-primary" type="submit" value="Sign Up">
+                <a class = "btn btn-secondary"href="/">Log In</a><br>
+            </form>
+        </section>
+    </div> 
 </body>
 </html>

@@ -1,12 +1,21 @@
+
 <% days.forEach((day) => { %>
-<div>
-  <a href="/User/Day/<%=day.date%>"><%=day.date%></a>
-  <a href="/User/NewEvent/Day/<%=day.date%>">+</a>
-  <% events.forEach((event) => { %> <%if(event.day === day.date) {%>
-    <a href="/User/Event/<%=event._id%>"><%=event.title%></a>
-    <form action="/User/Event/<%=event._id%>?_method=DELETE" method="POST">
-      <input class="btn btn-danger" type="submit" value="" />
-    </form>
-    <% }}) %>    
+<div class="day-tile">
+  <a href="/User/Day/<%=day.dayofMonth -1 %>"><%=day.dayofMonth%></a>
+  <div class="add-button-container">
+    <a id="new-event-button"href="/User/NewEvent/Day/<%=day.dayofMonth%>">+</a>
+  </div>
+  <%dayHours[day.dayofMonth - 1].am.forEach((hour) => { %>
+    <% events.forEach((event) => { %> <%if(event.day === day.date) {%>
+        <%if(event.hour === hour) {%>
+        <div class="event-box">
+        <a href="/User/Event/<%=event._id%>"><%=event.title%></a>
+        <form action="/User/Event/<%=event._id%>?_method=DELETE" method="POST">
+          <input class="btn btn-danger" type="submit" value="" />
+        </form>
+    </div>
+    <%}%>
+        <% }}) %>   
+    <% }) %> 
 </div>
 <% })%>
