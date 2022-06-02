@@ -11,7 +11,7 @@
         <%dayHours.am.forEach((hour) => { %>
             <div class="hours">
                 <div>
-                <%=hour%>
+                <%=hour%>:00
                 <a id="new-event-button"href="/User/NewEvent/Day/<%=day.dayofMonth%>">+</a>
                 </div>
                 <% events.forEach((event) => { %> <%if(event.day === day.date) {%>
@@ -19,7 +19,7 @@
                         <div class="event-box day-events">
                             <a href="/User/Event/<%=event._id%>"><%=event.title%></a>
                             <form action="/User/Event/<%=event._id%>?_method=DELETE" method="POST">
-                              <input class="btn btn-danger" type="submit" value="" />
+                              <input id="btn-danger" type="submit" value="" />
                             </form>
                         </div>
                 <%}%>

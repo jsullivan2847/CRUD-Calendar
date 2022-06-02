@@ -4,8 +4,9 @@
     <%- include('../partials/head.ejs') -%>
   </head>
   <body>
+    <div class="show-day-page">
     <section class="form-container">
-      <h1><%=event.title%></h1>
+      <h1 class="form-header"><%=event.title%></h1>
       <br />
       <form class="form-group" action="/User/Event/<%=event._id%>?_method=PUT" method="POST">
         <label for="title">Title</label>
@@ -13,21 +14,21 @@
           class="form-control"
           type="text"
           name="title"
-          id="titl"
+          id="title"
           value="<%=event.title%>"
-        />
-        <small id="passwordHelpBlock" class="form-text text-muted">
-            Change the title of your event
-          </small>
-        <br />
+        /> <br>
         <label for="day">Day</label>
             <input class="form-control"type="date" name="day"id="day" value="<%=day%>"><br>
+            <label for="hour">Time</label>
+            <input class="form-control"type="number" name="hour" id="hour" value="1" placeholder="
+            1"><br>
         <input class="form-control"type="submit" value="Submit Changes" />
-      </form><br>
+      </form>
 
       <form action="/User/Event/<%=event._id%>?_method=DELETE" method="POST">
         <input class="form-control"type="submit" value="Delete Event" />
       </form>
     </section>
+    </div>
   </body>
 </html>

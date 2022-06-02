@@ -6,16 +6,15 @@
 <body>
     <div class="show-day-page">
     <section class="form-container">
-        <h1>New Event</h1>
+        <h1 class="form-header">New Event</h1>
     <main>
-        
         <form class="form-group" action="/User/Calendar" method="POST">
             <label for="title">Title</label>
-            <input class="form-control"type="text" name="title" id="title"><br>
+            <input class="form-control"type="text" name="title" id="title"maxLength="25"><br>
             <label for="day">Day</label>
-            <input class="form-control"type="Date" name="day"id="day"value="<%=today%>">
-            <label for="hour">Hour</label>
-            <input class="form-control"type="number" name="hour" id="hour"><br>
+            <input class="form-control"type="Date" name="day"id="day"value="<%=today%>"><br>
+            <label for="hour">Time</label>
+            <input class="form-control"type="number" name="hour" id="hour" value="1"><br>
             <br>
             <input class="form-control"type="submit" value="Create Event">
         </form>

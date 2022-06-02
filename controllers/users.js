@@ -88,6 +88,8 @@ router.delete('/Event/:id', (req,res) => {
 router.put('/Event/:id', (req,res) => {
   User.findById(req.session.currentUser._id,(error,updatedUser) => {
     updatedUser.event.id(req.params.id).title = req.body.title;
+    updatedUser.event.id(req.params.id).day = req.body.day;
+    updatedUser.event.id(req.params.id).hour = req.body.hour;
     updatedUser.save((error,result)=> {
       res.redirect('/User/Calendar');
     });
